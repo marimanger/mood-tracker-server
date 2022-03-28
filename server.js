@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-// const inventoryRoutes = require("./routes/inventoryRoutes");
+const moodRoutes = require("./routes/moodTrackerRoutes");
 // const warehouseRoutes = require("./routes/warehouseRoutes");
 
 const app = express();
@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 // app.use(warehouseRoutes);
-// app.use(inventoryRoutes);
+app.use(moodRoutes);
 
 app.get("/", (_req, res) => {
   res.send("Welcome to the Mood Tracker Server");

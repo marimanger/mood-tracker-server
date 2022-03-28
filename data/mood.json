@@ -1,0 +1,34 @@
+[
+  {
+    "id": "9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3",
+    "moodName": "Happy"
+    
+  },
+  {
+    "id": "9b4f79ea-0e6c-4e59-8e05-afd933d0b3d4",
+    "moodName": "Sad"
+    
+  },
+  {
+    "id": "9b4f79ea-0e6c-4e59-8e05-afd933d0b3d4",
+    "moodName": "Angry"
+    
+  },
+  {
+    "id": "9b4f79ea-0e6c-4e59-8e05-afd933d0b3d5",
+    "moodName": "Calm"
+    
+  },
+  {
+    "id": "9b4f79ea-0e6c-4e59-8e05-afd933d0b3d6",
+    "moodName": "Frustrated"
+    
+  },
+  {
+    "id": "9b4f79ea-0e6c-4e59-8e05-afd933d0b3d7",
+    "moodName": "Calm"
+    
+  }
+
+  
+]
