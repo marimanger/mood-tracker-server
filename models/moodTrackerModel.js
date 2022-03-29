@@ -7,8 +7,8 @@ const getAllData = () => {
   return moodData;
 };
 
+//get users-mood
 
 module.exports = {
-  getAllData
-
+  getAllData,
 };

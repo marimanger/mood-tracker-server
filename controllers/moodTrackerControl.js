@@ -6,9 +6,6 @@ const getAllData = (_req, res) => {
   res.status(200).json(mood);
 };
 
-
-
 module.exports = {
-  getAllData
-
+  getAllData,
 };
