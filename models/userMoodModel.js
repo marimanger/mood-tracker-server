@@ -13,7 +13,6 @@ const getUserMoods = (userId) => {
 const addNewMood = (newMoodData, userId) => {
   const newMood = {
     id: uuidv4(),
-    date: Date.now(),
     ...newMoodData,
     userId,
   };
