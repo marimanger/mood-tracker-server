@@ -2,6 +2,7 @@ const userMoodModel = require("../models/userMoodModel");
 const helper = require("../utils/helpers");
 
 const getUsermood = (req, res) => {
+  
   const userId = req.query.userId;
   if (req.query.date) {
     const date = req.query.date;
