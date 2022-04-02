@@ -13,6 +13,7 @@ const writeData = (path, myData) => {
 };
 
 const findById = (moods, id) => {
+  console.info(`userMoods: ${moods}`);
   return moods.find((mood) => mood.id === id);
 };
 

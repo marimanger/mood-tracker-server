@@ -6,6 +6,7 @@ const helper = require("../utils/helpers");
 const getUserMoods = (userId) => {
   const moodUserData = helper.readData("./data/mood-user.json");
   const newFilteredData = moodUserData.filter((i) => i.userId === userId);
+  console.info(newFilteredData);
   return newFilteredData;
 };
 

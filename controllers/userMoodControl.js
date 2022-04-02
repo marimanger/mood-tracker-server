@@ -2,7 +2,6 @@ const userMoodModel = require("../models/userMoodModel");
 const helper = require("../utils/helpers");
 
 const getUsermood = (req, res) => {
-  
   const userId = req.query.userId;
   if (req.query.date) {
     const date = req.query.date;
@@ -36,6 +35,7 @@ const addNewMood = (req, res) => {
 const editMood = (req, res) => {
   const { moodName, note } = req.body;
   const userId = req.query.userId;
+
   if (!moodName || !note || !userId) {
     res.status(400).send("Edit mood you need to fill all");
   } else {
@@ -49,7 +49,7 @@ const editMood = (req, res) => {
       });
       res.status(201).json({
         msg: `Mood has been Updated`,
-        mood: updatedMood,
+        moodName: updatedMood,
       });
     } else {
       res.status(404).json({
