@@ -37,11 +37,11 @@ const addUserMood = async (newMoodData, userId) => {
 //edit mood
 const updateUserMoodById = async (userId, moodId, updateValues) => {
   const userMoodItem = await getUserMoodById(moodId, userId);
-  console.info(`Updating user modd for id ${moodId}, userId ${userId}, values ${JSON.stringify(updateValues)}`);
+  console.info(`Updating user mood for id ${moodId}, userId ${userId}, values ${JSON.stringify(updateValues)}`);
   if (userMoodItem) {
     try {
       await UserMood.updateOne(
-        { $and: [{ id: moodId }, { userId: userId }] },
+        { $and: [{ _id: moodId }, { userId: userId }] },
         { ...userMoodItem, ...updateValues }
       );
     } catch {

@@ -66,7 +66,7 @@ const editMood = async (req, res) => {
       const found = await userMoodModel.getUserMoodById(req.params.id, userId);
       console.info(found);
       if (found) {
-        userMoodModel.updateUserMoodById(userId, req.params.id, {
+        await userMoodModel.updateUserMoodById(userId, req.params.id, {
           ...req.body,
         });
         res.status(201).json({
