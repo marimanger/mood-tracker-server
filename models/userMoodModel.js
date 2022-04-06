@@ -1,41 +1,82 @@
-const { v4: uuidv4 } = require("uuid");
-const fs = require("fs");
-const helper = require("../utils/helpers");
+const UserMood = require("./../models/userMoodsModel.model.js");
 
 //get all users-mood
-const getUserMoods = (userId) => {
-  const moodUserData = helper.readData("./data/mood-user.json");
-  const newFilteredData = moodUserData.filter((i) => i.userId === userId);
-  console.info(newFilteredData);
-  return newFilteredData;
+const getUserMoods = async (userId) => {
+  return await findUserMoodsCommon({ userId: userId });
+};
+
+const getUserMoodByDate = async (userId, date) => {
+  return await findUserMoodsCommon({
+    $and: [{ userId: userId }, { date: date }],
+  });
+};
+
+const getUserMoodById = async (id, userId) => {
+  return await findUserMoodsCommon({ $and: [{ _id: id }, { userId: userId }] });
 };
 
 //add new mood
-const addNewMood = (newMoodData, userId) => {
-  const newMood = {
-    id: uuidv4(),
-    ...newMoodData,
-    userId,
-  };
-
-  const moodFileContent = helper.readData("./data/mood-user.json");
-  moodFileContent.push(newMood);
-  helper.writeData("./data/mood-user.json", moodFileContent);
-  return newMood;
+const addUserMood = async (newMoodData, userId) => {
+  try {
+    const newMood = new UserMood({
+      moodName: newMoodData.moodName,
+      note: newMoodData.note,
+      date: newMoodData.date,
+      userId: userId,
+    });
+    console.info(`New mood is ${newMood}`);
+    return await UserMood.create(newMood);
+  } catch {
+    (error) => {
+      console.info(error.message);
+      throw new Error("Error adding user mood");
+    };
+  }
 };
 
 //edit mood
+const updateUserMoodById = async (userId, moodId, updateValues) => {
+  const userMoodItem = await getUserMoodById(moodId, userId);
+  console.info(`Updating user mood for id ${moodId}, userId ${userId}, values ${JSON.stringify(updateValues)}`);
+  if (userMoodItem) {
+    try {
+      await UserMood.updateOne(
+        { $and: [{ _id: moodId }, { userId: userId }] },
+        { ...userMoodItem, ...updateValues }
+      );
+    } catch {
+      (error) => {
+        console.info(error.message);
+        throw new Error("Error updaing user mood");
+      };
+    }
+  }
+};
 
-const updateMoodById = (userId, moodId, updateValues) => {
-  const updatedMood = getUserMoods(userId).map((mood) =>
-    mood.id === moodId ? { ...mood, ...updateValues } : mood
-  );
-  helper.writeData("./data/mood-user.json", updatedMood);
-  return updatedMood;
+const findUserMoodsCommon = async (query) => {
+  try {
+    const res = await UserMood.find(query);
+    return res.map((item) => {
+      return {
+        id: item._id,
+        moodName: item.moodName,
+        note: item.note,
+        date: item.date,
+        userId: item.userId,
+      };
+    });
+  } catch {
+    (error) => {
+      console.info(error.message);
+      throw new Error("Error searching for user mood");
+    };
+  }
 };
 
 module.exports = {
   getUserMoods,
-  addNewMood,
-  updateMoodById,
+  addUserMood,
+  getUserMoodByDate,
+  updateUserMoodById,
+  getUserMoodById,
 };
