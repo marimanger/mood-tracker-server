@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 
-const moodRoutes = require("./routes/moodTrackerRoutes");
 const userMoodRoutes = require("./routes/userMoodRoutes");
 
 if (process.env.NODE_ENV !== "production") {
@@ -23,8 +22,6 @@ const mongoPassword = process.env.MONGO_PASSWORD || "password";
 app.use(express.json());
 app.use(cors());
 
-// app.use(warehouseRoutes);
-app.use(moodRoutes);
 app.use(userMoodRoutes);
 
 app.get("/", (_req, res) => {
