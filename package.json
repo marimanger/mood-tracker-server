@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.10",
+    "uuid": "^8.3.2"
+  },
+  "name": "mood-tracker-server",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js --ignore './data/mood-user.json'",
+    "start-prod": "NODE_ENV=test node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marimanger/mood-tracker-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marimanger/mood-tracker-server/issues"
+  },
+  "homepage": "https://github.com/marimanger/mood-tracker-server#readme"
+}
